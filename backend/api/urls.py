@@ -3,6 +3,8 @@ from webapps.views import (register, get_me)
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from api.controllers.rental_form_controller import get_rental_forms, add_rental_form, edit_rental_form, get_form_detail, delete_rental_form
 from api.controllers.return_form_controller import get_return_forms, add_return_form, edit_return_form, get_return_form_detail, delete_return_form
+from api.controllers.car_controller import CarViewSet
+
 
 urlpatterns = [
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),

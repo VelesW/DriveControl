@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import BusinessUser, SystemUser
+from ..modelss.models import BusinessUser, SystemUser
 
 
 class BusinessUserSerializer(serializers.ModelSerializer):

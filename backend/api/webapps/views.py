@@ -2,9 +2,9 @@ from django.shortcuts import render
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
-from .models import BusinessUser
-from .serializers import BusinessUserSerializer
-from .serializers import RegisterSerializer, SystemUserSerializer
+from ..modelss.models import BusinessUser
+from ..serializers.serializers import BusinessUserSerializer
+from ..serializers.serializers import RegisterSerializer, SystemUserSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404

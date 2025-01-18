@@ -18,6 +18,7 @@ def get_rental_forms(self):
 @api_view(['POST'])
 def add_rental_form(request):
     serializer = RentalFormSerializer(data=request.data)
+    print(request.data)
     if serializer.is_valid():
         rental_form_service.create_rental_form(request.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED)

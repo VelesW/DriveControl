@@ -2,9 +2,10 @@ from rest_framework import serializers
 from ..models.rental_form import RentalForm
 from ..models.return_form import ReturnForm
 from ..models.car import Car
-from ..serializers.car_serializer import CarSerializer
+from ..serializers.car_serializer import CarSerializer, SmallCarSerializer
 
 class RentalFormSerializer(serializers.ModelSerializer):
+    car = serializers.PrimaryKeyRelatedField(queryset=Car.objects.all())
 
     class Meta:
         model = RentalForm

@@ -1,5 +1,4 @@
-from ..modelss.rental_form import RentalForm
-
+from ..models.rental_form import RentalForm
 
 class RentalRepository:
     def save_form(self, form_data):

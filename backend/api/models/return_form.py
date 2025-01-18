@@ -7,7 +7,6 @@ class ReturnForm(models.Model):
     phone_number = models.CharField(max_length=20, blank=False)
     fuel_level = models.DecimalField(max_digits=5, decimal_places=2)
     date = models.DateField()
-    price = models.DecimalField(max_digits=8, decimal_places=2)
     additional_options = models.TextField()
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
     signature = models.TextField(blank=False)

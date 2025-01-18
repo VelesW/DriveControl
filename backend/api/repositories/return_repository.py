@@ -1,6 +1,6 @@
 from django.core.exceptions import ObjectDoesNotExist
 
-class RentalFormRepository:
+class ReturnFormRepository:
     def __init__(self, model):
         self.model = model
 
@@ -9,7 +9,7 @@ class RentalFormRepository:
 
     def get_by_id(self, pk):
         try:
-            return self.model.objects.get(id=pk)
+            return self.model.objects.select_related('car').get(id=pk)
         except ObjectDoesNotExist:
             return None
 
@@ -31,4 +31,4 @@ class RentalFormRepository:
         return False
 
     def list_all(self):
-        return self.model.objects.all()
+        return self.model.objects.select_related('car').all()

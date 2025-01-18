@@ -32,7 +32,3 @@ def get_me(request):
     user = request.user
     serializer = LoginSerializer(user)
     return Response(serializer.data)
-
-@api_view(['POST'])
-def complete_rent_car_form(request):
-    pass

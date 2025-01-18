@@ -81,7 +81,7 @@ CORS_ALLOW_ALL_ORIGINS = True  # Only for development!
 #     "http://127.0.0.1:3000/api/users",
 # ]
 
-ROOT_URLCONF = 'backend.urls'
+ROOT_URLCONF = 'web.urls'
 
 TEMPLATES = [
     {
@@ -99,7 +99,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'backend.wsgi.application'
+WSGI_APPLICATION = 'web.wsgi.application'
 
 
 # Database

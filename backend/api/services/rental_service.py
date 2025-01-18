@@ -1,16 +1,32 @@
-from ..repositories.rental_repository import RentalRepository
-from ..utils.signature_validator import SignatureValidator
+from ..serializers.rental_form_serializer import RentalFormSerializer
 
+class RentalFormService:
+    def __init__(self, repository):
+        self.repository = repository
 
-class RentalService:
-    def __init__(self, rental_repository: RentalRepository, signature_validator: SignatureValidator):
-        self.rental_repository = rental_repository
-        self.signature_validator = signature_validator
+    def create_rental_form(self, data):
+        serializer = RentalFormSerializer(data=data)
+        if serializer.is_valid(raise_exception=True):
+            return self.repository.create(serializer.validated_data)
 
-    def handle_form_submission(self, form_data):
-        # Validate the signature
-        if not self.signature_validator.validate(form_data.get("signature", "")):
-            raise ValueError("Invalid signature")
+    def get_rental_form_by_id(self, rental_id):
+        rental_form = self.repository.get_by_id(rental_id)
+        if rental_form:
+            return RentalFormSerializer(rental_form).data
+        return None
 
-        # Save the form
-        return self.rental_repository.save_form(form_data)
+    def update_rental_form(self, rental_id, data):
+        rental_form = self.repository.get_by_id(rental_id)
+        if not rental_form:
+            raise ValueError(f"RentalForm with ID {rental_id} does not exist.")
+
+        serializer = RentalFormSerializer(rental_form, data=data, partial=True)
+        if serializer.is_valid(raise_exception=True):
+            return self.repository.update(rental_id, serializer.validated_data)
+
+    def delete_rental_form(self, rental_id):
+        return self.repository.delete(rental_id)
+
+    def list_rental_forms(self):
+        rental_forms = self.repository.list_all()
+        return RentalFormSerializer(rental_forms, many=True).data

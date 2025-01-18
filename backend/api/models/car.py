@@ -7,8 +7,7 @@ class Car(models.Model):
     year = models.IntegerField()
     petrol_type = models.CharField(max_length=20, choices=[('petrol', 'Petrol'), ('diesel', 'Diesel'), ('electric', 'Electric')])
     drive_type = models.CharField(max_length=20, choices=[('fwd', 'FWD'), ('rwd', 'RWD'), ('awd', 'AWD')])
-    segment = models.CharField(max_length=20, choices=['A', 'B', 'C', 'D', 'E', 'F', 'J', 'M', 'S'])
-    engine_size = models.CharField(max_length=10)
+    segment = models.CharField(max_length=20, choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E'), ('F', 'F'), ('J', 'J'), ('M', 'M'), ('S', 'S')])
     horse_power = models.IntegerField()
     price_per_day = models.DecimalField(max_digits=8, decimal_places=2)
 

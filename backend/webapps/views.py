@@ -33,5 +33,6 @@ def get_me(request):
     serializer = LoginSerializer(user)
     return Response(serializer.data)
 
-# @api_view(['POST'])
-# def complete_rent_car_form(request):
+@api_view(['POST'])
+def complete_rent_car_form(request):
+    pass

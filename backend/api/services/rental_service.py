@@ -25,6 +25,7 @@ class RentalFormService:
             return self.repository.update(rental_id, serializer.validated_data)
 
     def delete_rental_form(self, rental_id):
+        print(rental_id)
         return self.repository.delete(rental_id)
 
     def list_rental_forms(self):

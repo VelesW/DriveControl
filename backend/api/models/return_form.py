@@ -1,7 +1,7 @@
 from django.db import models
 from .car import Car
 
-class RentalForm(models.Model):
+class ReturnForm(models.Model):
     renter_name = models.CharField(max_length=255, blank=False)
     renter_surname = models.CharField(max_length=255, blank=False)
     phone_number = models.CharField(max_length=20, blank=False)

@@ -5,7 +5,7 @@ import django.contrib.auth.validators
 import django.utils.timezone
 from django.db import migrations, models
 
-
+# Main migration class
 class Migration(migrations.Migration):
 
     initial = True

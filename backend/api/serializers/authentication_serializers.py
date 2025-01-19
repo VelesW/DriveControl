@@ -1,11 +1,5 @@
 from rest_framework import serializers
-from .models import BusinessUser, SystemUser
-
-
-class BusinessUserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = BusinessUser
-        fields = ['id', 'first_name', 'last_name', 'role']
+from ..models.system_user import SystemUser
 
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
@@ -23,7 +17,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         )
         return user
 
-class SystemUserSerializer(serializers.ModelSerializer):
+class LoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = SystemUser
-        fields = ['id','email','password']
+        fields = ['id','username','password']

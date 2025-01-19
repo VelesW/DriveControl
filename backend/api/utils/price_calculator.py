@@ -1,5 +1,7 @@
 from enum import Enum
 from datetime import datetime
+from ..repositories.car_repository import CarRepository
+from ..models.car import Car
 
 from enum import Enum
 
@@ -10,7 +12,7 @@ class RentalOption(Enum):
     BABY_SEAT = "baby_seat"
     INSURANCE = "insurance"
 
-def calculate_price(date_from, date_to, additional_options):
+def calculate_price(date_from, date_to, additional_options, car_id):
     valid_options = set(option.value for option in RentalOption)
     options_list = additional_options.split()
 
@@ -24,7 +26,9 @@ def calculate_price(date_from, date_to, additional_options):
     except ValueError:
         raise ValueError("Invalid date format. Expected format is YYYY-MM-DD.")
     
-    base_price = 100
+    car_repository = CarRepository(Car)
+
+    base_price = car_repository.get_by_id(car_id).price_per_day
     days_rented = (date_to - date_from).days
     total_price = base_price * days_rented
     

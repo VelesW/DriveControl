@@ -6,7 +6,7 @@ class RentalFormService:
         self.repository = repository
 
     def create_rental_form(self, data):
-        data['price'] = calculate_price(data['date_from'], data['date_to'], data['additional_options'])
+        data['price'] = calculate_price(data['date_from'], data['date_to'], data['additional_options'], data['car'])
         serializer = SendRentalFormSerializer(data=data)
         if serializer.is_valid(raise_exception=True):
             return self.repository.create(serializer.validated_data)
@@ -22,7 +22,7 @@ class RentalFormService:
         if not rental_form:
             raise ValueError(f"RentalForm with ID {pk} does not exist.") 
         
-        data['price'] = calculate_price(data['date_from'], data['date_to'], data['additional_options'])
+        data['price'] = calculate_price(data['date_from'], data['date_to'], data['additional_options'], data['car'])
 
         serializer = SendRentalFormSerializer(rental_form, data=data, partial=True)
         if serializer.is_valid(raise_exception=True):

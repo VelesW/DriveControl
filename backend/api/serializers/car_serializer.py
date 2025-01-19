@@ -6,7 +6,7 @@ class CarSerializer(serializers.ModelSerializer):
         model = Car
         fields = '__all__'
 
-class SmallCarSerializer(serializers.ModelSerializer):
+class CarIDSerializer(serializers.ModelSerializer):
     class Meta:
         model = Car
         fields = ['id']

@@ -21,4 +21,8 @@ urlpatterns = [
     path('return-form/edit/<int:pk>/', edit_return_form, name='return_form_edit'),
     path('return-form/delete/<int:pk>/', delete_return_form, name='return_form_delete'),
     path('return-form/get/<int:pk>/', get_return_form_detail, name='return_form_get'),
+    path('cars/', CarViewSet.as_view({'get': 'list'}), name='car-list'),
+    path('cars/<int:pk>/', CarViewSet.as_view({'get': 'retrieve'}), name='car-detail'),
+    path('cars/<int:pk>/', CarViewSet.as_view({'put': 'update'}), name='car-modify'),
+    path('cars/create/', CarViewSet.as_view({'post': 'create'}), name='car-create'),
 ]

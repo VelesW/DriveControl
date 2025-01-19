@@ -1,4 +1,4 @@
-from ..serializers.form_serializers import RentalFormSerializer
+from ..serializers.form_serializers import SendRentalFormSerializer, GetRentalFormSerializer
 from ..utils.price_calculator import calculate_price
 
 class RentalFormService:
@@ -7,14 +7,14 @@ class RentalFormService:
 
     def create_rental_form(self, data):
         data['price'] = calculate_price(data['date_from'], data['date_to'], data['additional_options'])
-        serializer = RentalFormSerializer(data=data)
+        serializer = SendRentalFormSerializer(data=data)
         if serializer.is_valid(raise_exception=True):
             return self.repository.create(serializer.validated_data)
 
     def get_rental_form_by_id(self, pk):
         rental_form = self.repository.get_by_id(pk)
         if rental_form:
-            return RentalFormSerializer(rental_form).data
+            return GetRentalFormSerializer(rental_form).data
         return None
 
     def update_rental_form(self, pk, data):
@@ -24,7 +24,7 @@ class RentalFormService:
         
         data['price'] = calculate_price(data['date_from'], data['date_to'], data['additional_options'])
 
-        serializer = RentalFormSerializer(rental_form, data=data, partial=True)
+        serializer = SendRentalFormSerializer(rental_form, data=data, partial=True)
         if serializer.is_valid(raise_exception=True):
             return self.repository.update(pk, serializer.validated_data)
 
@@ -34,4 +34,4 @@ class RentalFormService:
 
     def list_rental_forms(self):
         rental_forms = self.repository.list_all()
-        return RentalFormSerializer(rental_forms, many=True).data
+        return GetRentalFormSerializer(rental_forms, many=True).data

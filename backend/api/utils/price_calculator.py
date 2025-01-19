@@ -8,6 +8,7 @@ class RentalOption(Enum):
     AIR_CONDITIONING = "air_conditioning"
     CHILD_SEAT = "child_seat"
     BABY_SEAT = "baby_seat"
+    INSURANCE = "insurance"
 
 def calculate_price(date_from, date_to, additional_options):
     valid_options = set(option.value for option in RentalOption)
@@ -36,5 +37,7 @@ def calculate_price(date_from, date_to, additional_options):
             total_price += 15 * days_rented
         elif option == RentalOption.BABY_SEAT.value:
             total_price += 20 * days_rented
+        elif option == RentalOption.INSURANCE.value:
+            total_price += 80 * days_rented
     
     return total_price
